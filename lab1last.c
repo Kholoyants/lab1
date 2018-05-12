@@ -27,13 +27,13 @@ void Pack(char *dir)
 		exit(11); //
 	}
 	f = open("MAIzipper", O_WRONLY | O_CREAT, 0775);
-	chdir(dir);
+	chdir(dir); //делаем каталог текущим
 	if (f < 0) {
 		write(1, "Error opening file MAIzipper\n", 23);
 		exit(12);
 	}
-	while ((sd = readdir(d)) != NULL) {
-		if (!(lstat(sd->d_name, &ss) == 0)) {
+	while ((sd = readdir(d)) != NULL) {    //читаем дирректорию
+		if (!(lstat(sd->d_name, &ss) == 0)) {  
 			write(1, "Error\n", 6);
 			exit(13);
 		}
@@ -113,7 +113,7 @@ void Pack(char *dir)
 		exit(15);
 }
 
-void clearbuf(char *buf, size_t l)
+void clearbuf(char *buf, size_t l) 
 {
 	for (int i = 0; i < l; i++)
 		buf[i] = '\0';
